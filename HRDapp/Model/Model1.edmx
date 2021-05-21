@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище HRDModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_applicant_personal">
+          <Key>
+            <PropertyRef Name="ap_id" />
+          </Key>
+          <Property Name="ap_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ap_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ap_position" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ap_phone1" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ap_phone2" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ap_email" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ap_image" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ap_gender" Type="int" />
+          <Property Name="ap_dob" Type="date" />
+          <Property Name="ap_salary" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ap_password" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_department">
+          <Key>
+            <PropertyRef Name="dept_id" />
+          </Key>
+          <Property Name="dept_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dept_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_grad">
+          <Key>
+            <PropertyRef Name="grad_id" />
+          </Key>
+          <Property Name="grad_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="grad_precentage" Type="float" />
+          <Property Name="grad_institue" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="grad_doc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="grad_fk_ap_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_hsc">
+          <Key>
+            <PropertyRef Name="hsc_id" />
+          </Key>
+          <Property Name="hsc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hsc_precentage" Type="float" />
+          <Property Name="hsc_institue" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="hsc_doc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="hsc_fk_ap_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_mas">
+          <Key>
+            <PropertyRef Name="mas_id" />
+          </Key>
+          <Property Name="mas_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mas_precentage" Type="float" />
+          <Property Name="mas_institue" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="mas_doc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="mas_fk_ap_id" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_position">
+          <Key>
+            <PropertyRef Name="pos_id" />
+          </Key>
+          <Property Name="pos_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pos_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ssc">
+          <Key>
+            <PropertyRef Name="ssc_id" />
+          </Key>
+          <Property Name="ssc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ssc_precentage" Type="float" />
+          <Property Name="ssc_institue" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ssc_doc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ssc_fk_ap_id" Type="int" />
+        </EntityType>
+        <Association Name="FK__tbl_grad__grad_f__60A75C0F">
+          <End Role="tbl_applicant_personal" Type="Self.tbl_applicant_personal" Multiplicity="0..1" />
+          <End Role="tbl_grad" Type="Self.tbl_grad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_applicant_personal">
+              <PropertyRef Name="ap_id" />
+            </Principal>
+            <Dependent Role="tbl_grad">
+              <PropertyRef Name="grad_fk_ap_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_hsc__hsc_fk___5DCAEF64">
+          <End Role="tbl_applicant_personal" Type="Self.tbl_applicant_personal" Multiplicity="0..1" />
+          <End Role="tbl_hsc" Type="Self.tbl_hsc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_applicant_personal">
+              <PropertyRef Name="ap_id" />
+            </Principal>
+            <Dependent Role="tbl_hsc">
+              <PropertyRef Name="hsc_fk_ap_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_mas__mas_fk___6383C8BA">
+          <End Role="tbl_applicant_personal" Type="Self.tbl_applicant_personal" Multiplicity="0..1" />
+          <End Role="tbl_mas" Type="Self.tbl_mas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_applicant_personal">
+              <PropertyRef Name="ap_id" />
+            </Principal>
+            <Dependent Role="tbl_mas">
+              <PropertyRef Name="mas_fk_ap_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_ssc__ssc_fk___5AEE82B9">
+          <End Role="tbl_applicant_personal" Type="Self.tbl_applicant_personal" Multiplicity="0..1" />
+          <End Role="tbl_ssc" Type="Self.tbl_ssc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_applicant_personal">
+              <PropertyRef Name="ap_id" />
+            </Principal>
+            <Dependent Role="tbl_ssc">
+              <PropertyRef Name="ssc_fk_ap_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище HRDModelContainer">
+          <EntitySet Name="tbl_applicant_personal" EntityType="Self.tbl_applicant_personal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_department" EntityType="Self.tbl_department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_grad" EntityType="Self.tbl_grad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_hsc" EntityType="Self.tbl_hsc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_mas" EntityType="Self.tbl_mas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_position" EntityType="Self.tbl_position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ssc" EntityType="Self.tbl_ssc" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tbl_grad__grad_f__60A75C0F" Association="Self.FK__tbl_grad__grad_f__60A75C0F">
+            <End Role="tbl_applicant_personal" EntitySet="tbl_applicant_personal" />
+            <End Role="tbl_grad" EntitySet="tbl_grad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_hsc__hsc_fk___5DCAEF64" Association="Self.FK__tbl_hsc__hsc_fk___5DCAEF64">
+            <End Role="tbl_applicant_personal" EntitySet="tbl_applicant_personal" />
+            <End Role="tbl_hsc" EntitySet="tbl_hsc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_mas__mas_fk___6383C8BA" Association="Self.FK__tbl_mas__mas_fk___6383C8BA">
+            <End Role="tbl_applicant_personal" EntitySet="tbl_applicant_personal" />
+            <End Role="tbl_mas" EntitySet="tbl_mas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_ssc__ssc_fk___5AEE82B9" Association="Self.FK__tbl_ssc__ssc_fk___5AEE82B9">
+            <End Role="tbl_applicant_personal" EntitySet="tbl_applicant_personal" />
+            <End Role="tbl_ssc" EntitySet="tbl_ssc" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_applicant_personal">
+          <Key>
+            <PropertyRef Name="ap_id" />
+          </Key>
+          <Property Name="ap_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ap_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ap_position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ap_phone1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ap_phone2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ap_email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ap_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ap_gender" Type="Int32" />
+          <Property Name="ap_dob" Type="DateTime" Precision="0" />
+          <Property Name="ap_salary" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ap_password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbl_grad" Relationship="Self.FK__tbl_grad__grad_f__60A75C0F" FromRole="tbl_applicant_personal" ToRole="tbl_grad" />
+          <NavigationProperty Name="tbl_hsc" Relationship="Self.FK__tbl_hsc__hsc_fk___5DCAEF64" FromRole="tbl_applicant_personal" ToRole="tbl_hsc" />
+          <NavigationProperty Name="tbl_mas" Relationship="Self.FK__tbl_mas__mas_fk___6383C8BA" FromRole="tbl_applicant_personal" ToRole="tbl_mas" />
+          <NavigationProperty Name="tbl_ssc" Relationship="Self.FK__tbl_ssc__ssc_fk___5AEE82B9" FromRole="tbl_applicant_personal" ToRole="tbl_ssc" />
+        </EntityType>
+        <EntityType Name="tbl_department">
+          <Key>
+            <PropertyRef Name="dept_id" />
+          </Key>
+          <Property Name="dept_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dept_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_grad">
+          <Key>
+            <PropertyRef Name="grad_id" />
+          </Key>
+          <Property Name="grad_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="grad_precentage" Type="Double" />
+          <Property Name="grad_institue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="grad_doc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="grad_fk_ap_id" Type="Int32" />
+          <NavigationProperty Name="tbl_applicant_personal" Relationship="Self.FK__tbl_grad__grad_f__60A75C0F" FromRole="tbl_grad" ToRole="tbl_applicant_personal" />
+        </EntityType>
+        <EntityType Name="tbl_hsc">
+          <Key>
+            <PropertyRef Name="hsc_id" />
+          </Key>
+          <Property Name="hsc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hsc_precentage" Type="Double" />
+          <Property Name="hsc_institue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hsc_doc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hsc_fk_ap_id" Type="Int32" />
+          <NavigationProperty Name="tbl_applicant_personal" Relationship="Self.FK__tbl_hsc__hsc_fk___5DCAEF64" FromRole="tbl_hsc" ToRole="tbl_applicant_personal" />
+        </EntityType>
+        <EntityType Name="tbl_mas">
+          <Key>
+            <PropertyRef Name="mas_id" />
+          </Key>
+          <Property Name="mas_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mas_precentage" Type="Double" />
+          <Property Name="mas_institue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mas_doc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mas_fk_ap_id" Type="Int32" />
+          <NavigationProperty Name="tbl_applicant_personal" Relationship="Self.FK__tbl_mas__mas_fk___6383C8BA" FromRole="tbl_mas" ToRole="tbl_applicant_personal" />
+        </EntityType>
+        <EntityType Name="tbl_position">
+          <Key>
+            <PropertyRef Name="pos_id" />
+          </Key>
+          <Property Name="pos_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pos_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_ssc">
+          <Key>
+            <PropertyRef Name="ssc_id" />
+          </Key>
+          <Property Name="ssc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ssc_precentage" Type="Double" />
+          <Property Name="ssc_institue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ssc_doc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ssc_fk_ap_id" Type="Int32" />
+          <NavigationProperty Name="tbl_applicant_personal" Relationship="Self.FK__tbl_ssc__ssc_fk___5AEE82B9" FromRole="tbl_ssc" ToRole="tbl_applicant_personal" />
+        </EntityType>
+        <Association Name="FK__tbl_grad__grad_f__60A75C0F">
+          <End Role="tbl_applicant_personal" Type="Self.tbl_applicant_personal" Multiplicity="0..1" />
+          <End Role="tbl_grad" Type="Self.tbl_grad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_applicant_personal">
+              <PropertyRef Name="ap_id" />
+            </Principal>
+            <Dependent Role="tbl_grad">
+              <PropertyRef Name="grad_fk_ap_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_hsc__hsc_fk___5DCAEF64">
+          <End Role="tbl_applicant_personal" Type="Self.tbl_applicant_personal" Multiplicity="0..1" />
+          <End Role="tbl_hsc" Type="Self.tbl_hsc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_applicant_personal">
+              <PropertyRef Name="ap_id" />
+            </Principal>
+            <Dependent Role="tbl_hsc">
+              <PropertyRef Name="hsc_fk_ap_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_mas__mas_fk___6383C8BA">
+          <End Role="tbl_applicant_personal" Type="Self.tbl_applicant_personal" Multiplicity="0..1" />
+          <End Role="tbl_mas" Type="Self.tbl_mas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_applicant_personal">
+              <PropertyRef Name="ap_id" />
+            </Principal>
+            <Dependent Role="tbl_mas">
+              <PropertyRef Name="mas_fk_ap_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_ssc__ssc_fk___5AEE82B9">
+          <End Role="tbl_applicant_personal" Type="Self.tbl_applicant_personal" Multiplicity="0..1" />
+          <End Role="tbl_ssc" Type="Self.tbl_ssc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_applicant_personal">
+              <PropertyRef Name="ap_id" />
+            </Principal>
+            <Dependent Role="tbl_ssc">
+              <PropertyRef Name="ssc_fk_ap_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_applicant_personal" EntityType="Self.tbl_applicant_personal" />
+          <EntitySet Name="tbl_department" EntityType="Self.tbl_department" />
+          <EntitySet Name="tbl_grad" EntityType="Self.tbl_grad" />
+          <EntitySet Name="tbl_hsc" EntityType="Self.tbl_hsc" />
+          <EntitySet Name="tbl_mas" EntityType="Self.tbl_mas" />
+          <EntitySet Name="tbl_position" EntityType="Self.tbl_position" />
+          <EntitySet Name="tbl_ssc" EntityType="Self.tbl_ssc" />
+          <AssociationSet Name="FK__tbl_grad__grad_f__60A75C0F" Association="Self.FK__tbl_grad__grad_f__60A75C0F">
+            <End Role="tbl_applicant_personal" EntitySet="tbl_applicant_personal" />
+            <End Role="tbl_grad" EntitySet="tbl_grad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_hsc__hsc_fk___5DCAEF64" Association="Self.FK__tbl_hsc__hsc_fk___5DCAEF64">
+            <End Role="tbl_applicant_personal" EntitySet="tbl_applicant_personal" />
+            <End Role="tbl_hsc" EntitySet="tbl_hsc" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_mas__mas_fk___6383C8BA" Association="Self.FK__tbl_mas__mas_fk___6383C8BA">
+            <End Role="tbl_applicant_personal" EntitySet="tbl_applicant_personal" />
+            <End Role="tbl_mas" EntitySet="tbl_mas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_ssc__ssc_fk___5AEE82B9" Association="Self.FK__tbl_ssc__ssc_fk___5AEE82B9">
+            <End Role="tbl_applicant_personal" EntitySet="tbl_applicant_personal" />
+            <End Role="tbl_ssc" EntitySet="tbl_ssc" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище HRDModelContainer" CdmEntityContainer="HRDEntities">
+          <EntitySetMapping Name="tbl_applicant_personal">
+            <EntityTypeMapping TypeName="HRDModel.tbl_applicant_personal">
+              <MappingFragment StoreEntitySet="tbl_applicant_personal">
+                <ScalarProperty Name="ap_id" ColumnName="ap_id" />
+                <ScalarProperty Name="ap_name" ColumnName="ap_name" />
+                <ScalarProperty Name="ap_position" ColumnName="ap_position" />
+                <ScalarProperty Name="ap_phone1" ColumnName="ap_phone1" />
+                <ScalarProperty Name="ap_phone2" ColumnName="ap_phone2" />
+                <ScalarProperty Name="ap_email" ColumnName="ap_email" />
+                <ScalarProperty Name="ap_image" ColumnName="ap_image" />
+                <ScalarProperty Name="ap_gender" ColumnName="ap_gender" />
+                <ScalarProperty Name="ap_dob" ColumnName="ap_dob" />
+                <ScalarProperty Name="ap_salary" ColumnName="ap_salary" />
+                <ScalarProperty Name="ap_password" ColumnName="ap_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_department">
+            <EntityTypeMapping TypeName="HRDModel.tbl_department">
+              <MappingFragment StoreEntitySet="tbl_department">
+                <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+                <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_grad">
+            <EntityTypeMapping TypeName="HRDModel.tbl_grad">
+              <MappingFragment StoreEntitySet="tbl_grad">
+                <ScalarProperty Name="grad_id" ColumnName="grad_id" />
+                <ScalarProperty Name="grad_precentage" ColumnName="grad_precentage" />
+                <ScalarProperty Name="grad_institue" ColumnName="grad_institue" />
+                <ScalarProperty Name="grad_doc" ColumnName="grad_doc" />
+                <ScalarProperty Name="grad_fk_ap_id" ColumnName="grad_fk_ap_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_hsc">
+            <EntityTypeMapping TypeName="HRDModel.tbl_hsc">
+              <MappingFragment StoreEntitySet="tbl_hsc">
+                <ScalarProperty Name="hsc_id" ColumnName="hsc_id" />
+                <ScalarProperty Name="hsc_precentage" ColumnName="hsc_precentage" />
+                <ScalarProperty Name="hsc_institue" ColumnName="hsc_institue" />
+                <ScalarProperty Name="hsc_doc" ColumnName="hsc_doc" />
+                <ScalarProperty Name="hsc_fk_ap_id" ColumnName="hsc_fk_ap_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_mas">
+            <EntityTypeMapping TypeName="HRDModel.tbl_mas">
+              <MappingFragment StoreEntitySet="tbl_mas">
+                <ScalarProperty Name="mas_id" ColumnName="mas_id" />
+                <ScalarProperty Name="mas_precentage" ColumnName="mas_precentage" />
+                <ScalarProperty Name="mas_institue" ColumnName="mas_institue" />
+                <ScalarProperty Name="mas_doc" ColumnName="mas_doc" />
+                <ScalarProperty Name="mas_fk_ap_id" ColumnName="mas_fk_ap_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_position">
+            <EntityTypeMapping TypeName="HRDModel.tbl_position">
+              <MappingFragment StoreEntitySet="tbl_position">
+                <ScalarProperty Name="pos_id" ColumnName="pos_id" />
+                <ScalarProperty Name="pos_name" ColumnName="pos_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ssc">
+            <EntityTypeMapping TypeName="HRDModel.tbl_ssc">
+              <MappingFragment StoreEntitySet="tbl_ssc">
+                <ScalarProperty Name="ssc_id" ColumnName="ssc_id" />
+                <ScalarProperty Name="ssc_precentage" ColumnName="ssc_precentage" />
+                <ScalarProperty Name="ssc_institue" ColumnName="ssc_institue" />
+                <ScalarProperty Name="ssc_doc" ColumnName="ssc_doc" />
+                <ScalarProperty Name="ssc_fk_ap_id" ColumnName="ssc_fk_ap_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

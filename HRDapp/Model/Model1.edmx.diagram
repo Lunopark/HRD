@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0655f3418dbb45e494f6e78ad2563523" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="HRDModel.tbl_applicant_personal" Width="1.5" PointX="3.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRDModel.tbl_department" Width="1.5" PointX="6.375" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRDModel.tbl_grad" Width="1.5" PointX="1" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRDModel.tbl_hsc" Width="1.5" PointX="6.125" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRDModel.tbl_mas" Width="1.5" PointX="6.125" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRDModel.tbl_position" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HRDModel.tbl_ssc" Width="1.5" PointX="0.875" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="HRDModel.FK__tbl_grad__grad_f__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="HRDModel.FK__tbl_hsc__hsc_fk___5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="HRDModel.FK__tbl_mas__mas_fk___6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="HRDModel.FK__tbl_ssc__ssc_fk___5AEE82B9" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
